@@ -215,6 +215,9 @@ export const saveToFirebase = async (
   }
 
   const firestore = _getFirestore();
+  if (!firestore) {
+    return null;
+  }
   const docRef = doc(firestore, "scenes", roomId);
 
   const storedScene = await runTransaction(firestore, async (transaction) => {
@@ -266,6 +269,9 @@ export const loadFromFirebase = async (
   socket: Socket | null,
 ): Promise<readonly SyncableExcalidrawElement[] | null> => {
   const firestore = _getFirestore();
+  if (!firestore) {
+    return null;
+  }
   const docRef = doc(firestore, "scenes", roomId);
   const docSnap = await getDoc(docRef);
   if (!docSnap.exists()) {
