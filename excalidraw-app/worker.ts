@@ -32,10 +32,10 @@ export default {
     
     // Default headers for all responses
     if (!newHeaders.has('Access-Control-Allow-Origin')) {
-        newHeaders.set('Access-Control-Allow-Origin', 'https://excalidraw.com');
+        newHeaders.set('Access-Control-Allow-Origin', '*');
     }
     newHeaders.set('X-Content-Type-Options', 'nosniff');
-    newHeaders.set('Referrer-Policy', 'origin');
+    newHeaders.set('Referrer-Policy', 'no-referrer-when-downgrade');
 
     // Font caching and specific CORS
     if (url.pathname.endsWith('.woff2')) {
@@ -44,7 +44,7 @@ export default {
         if (url.pathname.match(/(Virgil|Cascadia|Assistant-Regular).woff2/)) {
             newHeaders.set('Access-Control-Allow-Origin', '*');
         } else {
-             newHeaders.set('Access-Control-Allow-Origin', 'https://excalidraw.com');
+             newHeaders.set('Access-Control-Allow-Origin', '*');
         }
     }
 
