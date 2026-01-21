@@ -58,22 +58,32 @@ let firestore: ReturnType<typeof getFirestore> | null = null;
 let firebaseStorage: ReturnType<typeof getStorage> | null = null;
 
 const _initializeFirebase = () => {
-  if (!firebaseApp) {
-    firebaseApp = initializeApp(FIREBASE_CONFIG);
+  if (!firebaseApp && Object.keys(FIREBASE_CONFIG).length > 0) {
+    try {
+      firebaseApp = initializeApp(FIREBASE_CONFIG);
+    } catch (error) {
+      console.warn("Failed to initialize Firebase:", error);
+    }
   }
   return firebaseApp;
 };
 
 const _getFirestore = () => {
   if (!firestore) {
-    firestore = getFirestore(_initializeFirebase());
+    const app = _initializeFirebase();
+    if (app) {
+      firestore = getFirestore(app);
+    }
   }
   return firestore;
 };
 
 const _getStorage = () => {
   if (!firebaseStorage) {
-    firebaseStorage = getStorage(_initializeFirebase());
+    const app = _initializeFirebase();
+    if (app) {
+      firebaseStorage = getStorage(app);
+    }
   }
   return firebaseStorage;
 };
@@ -153,6 +163,10 @@ export const saveFilesToFirebase = async ({
 
   const erroredFiles: FileId[] = [];
   const savedFiles: FileId[] = [];
+
+  if (!storage) {
+     return { savedFiles, erroredFiles: files.map((f) => f.id) };
+  }
 
   await Promise.all(
     files.map(async ({ id, buffer }) => {
