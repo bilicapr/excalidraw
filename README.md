@@ -1,124 +1,111 @@
-<a href="https://excalidraw.com/" target="_blank" rel="noopener">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" alt="Excalidraw" srcset="https://excalidraw.nyc3.cdn.digitaloceanspaces.com/github/excalidraw_github_cover_2_dark.png" />
-    <img alt="Excalidraw" src="https://excalidraw.nyc3.cdn.digitaloceanspaces.com/github/excalidraw_github_cover_2.png" />
-  </picture>
-</a>
+# Excalidraw Cloudflare Workers Edition / Excalidraw Cloudflare Workers 版
 
-<h4 align="center">
-  <a href="https://excalidraw.com">Excalidraw Editor</a> |
-  <a href="https://plus.excalidraw.com/blog">Blog</a> |
-  <a href="https://docs.excalidraw.com">Documentation</a> |
-  <a href="https://plus.excalidraw.com">Excalidraw+</a>
-</h4>
+This is a modified version of Excalidraw optimized for deployment on **Cloudflare Workers**. It enables the **Share Link** feature using Cloudflare KV storage, eliminating the dependency on the official Excalidraw backend or Firebase.
 
-<div align="center">
-  <h2>
-    An open source virtual hand-drawn style whiteboard. </br>
-    Collaborative and end-to-end encrypted. </br>
-  <br />
-  </h2>
-</div>
+这是一个 Excalidraw 的修改版本，专门针对 **Cloudflare Workers** 部署进行了优化。它使用 Cloudflare KV 存储实现了 **分享链接 (Share Link)** 功能，从而消除了对 Excalidraw 官方后端或 Firebase 的依赖。
 
-<br />
-<p align="center">
-  <a href="https://github.com/excalidraw/excalidraw/blob/master/LICENSE">
-    <img alt="Excalidraw is released under the MIT license." src="https://img.shields.io/badge/license-MIT-blue.svg"  /></a>
-  <a href="https://www.npmjs.com/package/@excalidraw/excalidraw">
-    <img alt="npm downloads/month" src="https://img.shields.io/npm/dm/@excalidraw/excalidraw"  /></a>
-  <a href="https://docs.excalidraw.com/docs/introduction/contributing">
-    <img alt="PRs welcome!" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"  /></a>
-  <a href="https://discord.gg/UexuTaE">
-    <img alt="Chat on Discord" src="https://img.shields.io/discord/723672430744174682?color=738ad6&label=Chat%20on%20Discord&logo=discord&logoColor=ffffff&widge=false"/></a>
-  <a href="https://deepwiki.com/excalidraw/excalidraw">
-    <img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a>
-  <a href="https://twitter.com/excalidraw">
-    <img alt="Follow Excalidraw on Twitter" src="https://img.shields.io/twitter/follow/excalidraw.svg?label=follow+@excalidraw&style=social&logo=twitter"/></a>
-</p>
+## Features / 功能特性
 
-<div align="center">
-  <figure>
-    <a href="https://excalidraw.com" target="_blank" rel="noopener">
-      <img src="https://excalidraw.nyc3.cdn.digitaloceanspaces.com/github%2Fproduct_showcase.png" alt="Product showcase" />
-    </a>
-    <figcaption>
-      <p align="center">
-        Create beautiful hand-drawn like diagrams, wireframes, or whatever you like.
-      </p>
-    </figcaption>
-  </figure>
-</div>
+- 🚀 **Serverless Deployment**: Runs entirely on Cloudflare Workers (Edge Network).
+  - **无服务器部署**: 完全运行在 Cloudflare Workers（边缘网络）上。
+- 🔗 **Shareable Links**: Fully functional sharing feature using Cloudflare KV.
+  - **分享链接**: 使用 Cloudflare KV 实现功能完整的分享功能。
+- 🎨 **Core Experience**: All standard Excalidraw features (drawing, export, etc.).
+  - **核心体验**: 保留所有 Excalidraw 标准功能（绘图、导出等）。
+- 🛠️ **No Firebase Required**: Modified to use local API routes for data persistence.
+  - **无需 Firebase**: 修改为使用本地 API 路由进行数据持久化。
 
-## Features
+## Prerequisites / 前置要求
 
-The Excalidraw editor (npm package) supports:
+- [Node.js](https://nodejs.org/) (v18 or later / v18 或更高版本)
+- [Yarn](https://yarnpkg.com/) (v1.22.22 or later / v1.22.22 或更高版本)
+- [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) (Cloudflare CLI)
 
-- 💯&nbsp;Free & open-source.
-- 🎨&nbsp;Infinite, canvas-based whiteboard.
-- ✍️&nbsp;Hand-drawn like style.
-- 🌓&nbsp;Dark mode.
-- 🏗️&nbsp;Customizable.
-- 📷&nbsp;Image support.
-- 😀&nbsp;Shape libraries support.
-- 🌐&nbsp;Localization (i18n) support.
-- 🖼️&nbsp;Export to PNG, SVG & clipboard.
-- 💾&nbsp;Open format - export drawings as an `.excalidraw` json file.
-- ⚒️&nbsp;Wide range of tools - rectangle, circle, diamond, arrow, line, free-draw, eraser...
-- ➡️&nbsp;Arrow-binding & labeled arrows.
-- 🔙&nbsp;Undo / Redo.
-- 🔍&nbsp;Zoom and panning support.
+## Installation / 安装
 
-## Excalidraw.com
+1.  **Clone the repository / 克隆仓库**:
+    ```bash
+    git clone <your-repo-url>
+    cd excalidraw
+    ```
 
-The app hosted at [excalidraw.com](https://excalidraw.com) is a minimal showcase of what you can build with Excalidraw. Its [source code](https://github.com/excalidraw/excalidraw/tree/master/excalidraw-app) is part of this repository as well, and the app features:
+2.  **Install dependencies / 安装依赖**:
+    ```bash
+    yarn install
+    ```
 
-- 📡&nbsp;PWA support (works offline).
-- 🤼&nbsp;Real-time collaboration.
-- 🔒&nbsp;End-to-end encryption.
-- 💾&nbsp;Local-first support (autosaves to the browser).
-- 🔗&nbsp;Shareable links (export to a readonly link you can share with others).
+3.  **Login to Cloudflare / 登录 Cloudflare**:
+    ```bash
+    npx wrangler login
+    ```
 
-We'll be adding these features as drop-in plugins for the npm package in the future.
+## Configuration / 配置
 
-## Quick start
+### 1. Create a KV Namespace / 创建 KV 命名空间
 
-**Note:** following instructions are for installing the Excalidraw [npm package](https://www.npmjs.com/package/@excalidraw/excalidraw) when integrating Excalidraw into your own app. To run the repository locally for development, please refer to our [Development Guide](https://docs.excalidraw.com/docs/introduction/development).
-
-Use `npm` or `yarn` to install the package.
+You need a Cloudflare KV Namespace to store shared drawings.
+你需要一个 Cloudflare KV 命名空间来存储分享的绘图数据。
 
 ```bash
-npm install react react-dom @excalidraw/excalidraw
-# or
-yarn add react react-dom @excalidraw/excalidraw
+yarn wrangler kv:namespace create "EXCALIDRAW_KV"
 ```
 
-Check out our [documentation](https://docs.excalidraw.com/docs/@excalidraw/excalidraw/installation) for more details!
+Copy the `id` from the output (e.g., `aaf653e38de14c3f8285f1c8a4ee5cb7`).
+复制输出中的 `id`（例如 `aaf653e38de14c3f8285f1c8a4ee5cb7`）。
 
-## Contributing
+### 2. Update `wrangler.toml` / 更新 `wrangler.toml`
 
-- Missing something or found a bug? [Report here](https://github.com/excalidraw/excalidraw/issues).
-- Want to contribute? Check out our [contribution guide](https://docs.excalidraw.com/docs/introduction/contributing) or let us know on [Discord](https://discord.gg/UexuTaE).
-- Want to help with translations? See the [translation guide](https://docs.excalidraw.com/docs/introduction/contributing#translating).
+Open `excalidraw-app/wrangler.toml` and update the `kv_namespaces` section with your ID:
+打开 `excalidraw-app/wrangler.toml` 并用你的 ID 更新 `kv_namespaces` 部分：
 
-## Integrations
+```toml
+[[kv_namespaces]]
+binding = "EXCALIDRAW_KV"
+id = "<YOUR_KV_ID>"
+preview_id = "<YOUR_KV_ID>"
+```
 
-- [VScode extension](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)
-- [npm package](https://www.npmjs.com/package/@excalidraw/excalidraw)
+### 3. Verify Environment Variables / 验证环境变量
 
-## Who's integrating Excalidraw
+Ensure `.env.production` (or your build environment variables) points to the local worker API:
+确保 `.env.production`（或你的构建环境变量）指向本地 Worker API：
 
-[Google Cloud](https://googlecloudcheatsheet.withgoogle.com/architecture) • [Meta](https://meta.com/) • [CodeSandbox](https://codesandbox.io/) • [Obsidian Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin) • [Replit](https://replit.com/) • [Slite](https://slite.com/) • [Notion](https://notion.so/) • [HackerRank](https://www.hackerrank.com/) • and many others
+```env
+VITE_APP_BACKEND_V2_GET_URL=/api/v2/
+VITE_APP_BACKEND_V2_POST_URL=/api/v2/post/
+```
 
-## Sponsors & support
+## Local Development / 本地开发
 
-If you like the project, you can become a sponsor at [Open Collective](https://opencollective.com/excalidraw) or use [Excalidraw+](https://plus.excalidraw.com/).
+To run the app locally:
+在本地运行应用：
 
-## Thank you for supporting Excalidraw
+```bash
+yarn start
+```
 
-[<img src="https://opencollective.com/excalidraw/tiers/sponsors/0/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/0/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/1/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/1/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/2/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/2/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/3/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/3/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/4/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/4/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/5/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/5/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/6/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/6/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/7/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/7/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/8/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/8/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/9/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/9/website) [<img src="https://opencollective.com/excalidraw/tiers/sponsors/10/avatar.svg?avatarHeight=120"/>](https://opencollective.com/excalidraw/tiers/sponsors/10/website)
+## Deployment / 部署
 
-<a href="https://opencollective.com/excalidraw#category-CONTRIBUTE" target="_blank"><img src="https://opencollective.com/excalidraw/tiers/backers.svg?avatarHeight=32"/></a>
+To deploy the application to Cloudflare Workers:
+将应用部署到 Cloudflare Workers：
 
-Last but not least, we're thankful to these companies for offering their services for free:
+```bash
+yarn workspace excalidraw-app deploy
+```
 
-[![Vercel](./.github/assets/vercel.svg)](https://vercel.com) [![Sentry](./.github/assets/sentry.svg)](https://sentry.io) [![Crowdin](./.github/assets/crowdin.svg)](https://crowdin.com)
+Once deployed, you will receive a URL (e.g., `https://excalidraw-app.<your-subdomain>.workers.dev` or similar).
+部署完成后，你将获得一个 URL（例如 `https://excalidraw-app.<your-subdomain>.workers.dev` 或类似地址）。
+
+## Troubleshooting / 故障排除
+
+-   **Share Link fails / 分享链接失败**: Check if the KV Namespace ID in `wrangler.toml` matches what you created in Cloudflare.
+    -   检查 `wrangler.toml` 中的 KV Namespace ID 是否与你在 Cloudflare 中创建的一致。
+-   **Build errors / 构建错误**: Ensure you are using the correct Node.js version and have run `yarn install`.
+    -   确保你使用的是正确的 Node.js 版本，并且已经运行了 `yarn install`。
+-   **Firebase errors / Firebase 错误**: The code has been patched to gracefully handle missing Firebase configuration, but ensure you haven't accidentally re-enabled strict checks.
+    -   代码已经过修补，可以优雅地处理缺少 Firebase 配置的情况，但请确保你没有意外重新启用严格检查。
+
+## Original Project / 原项目
+
+This project is a fork of [Excalidraw](https://github.com/excalidraw/excalidraw).
+本项目是 [Excalidraw](https://github.com/excalidraw/excalidraw) 的一个分支。
